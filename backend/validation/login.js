@@ -10,7 +10,7 @@ function validateLoginInput(data) {
   if (isEmpty(data.username)) {
     data.username = "";
   }
-  if (isEmpty(data.password) {
+  if (isEmpty(data.password)) {
     data.password = "";
   }
 
