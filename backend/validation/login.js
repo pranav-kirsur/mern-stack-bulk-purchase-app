@@ -20,7 +20,7 @@ function validateLoginInput(data) {
     errors.username = "Username is required"
   }
 
-  if(validator.isEmpty(password))
+  if(validator.isEmpty(data.password))
   {
       errors.password = "Password is required"
   }
@@ -31,3 +31,5 @@ function validateLoginInput(data) {
   }
 
 }
+
+module.exports = validateLoginInput
