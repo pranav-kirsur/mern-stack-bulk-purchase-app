@@ -15,14 +15,16 @@ let Product = new mongoose.Schema({
     },
     status: {
         type: String,
+        enum: ["waiting", "placed", "dispatched", "cancelled"]
 
     },
     quantityOrdered: {
-        type: Number
+        type: Number,
+        default: 0
 
     },
     vendor_id: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }
 });

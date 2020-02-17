@@ -1,8 +1,8 @@
 const userRoutes = require('express').Router();
 let User = require('../models/user')
 
-// Getting all the users
-userRoutes.route('/').get(function(req, res) {
+// Getting the user profile
+userRoutes.route('/profile').get(function(req, res) {
     User.find(function(err, users) {
         if (err) {
             console.log(err);

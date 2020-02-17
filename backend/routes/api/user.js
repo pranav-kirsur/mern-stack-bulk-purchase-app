@@ -67,7 +67,8 @@ router.post("/login", (req, res) => {
         // Create JWT Payload
         const payload = {
           id: user.id,
-          username: user.username
+          username: user.username,
+          type: user.type
         }; 
 
 
@@ -97,6 +98,17 @@ router.post("/login", (req, res) => {
 // Getting all the users
 router.route('/getall').get(function(req, res) {
   User.find(function(err, users) {
+      if (err) {
+          console.log(err);
+      } else {
+          res.json(users);
+      }
+  });
+});
+
+//Get profile of user
+router.route('/profile').get(function(req, res) {
+  User.find(function(err, user) {
       if (err) {
           console.log(err);
       } else {

@@ -51,15 +51,13 @@ export default class CreateUser extends Component {
         console.log(res);
       })
       .catch((err) => {
+        let errors = err.response.data
         console.log(err.response);
+        this.setState(errors);
+        
       });
 
-    this.setState({
-      username: "",
-      password: "",
-      passwordConfirm: "",
-      type: "vendor"
-    });
+
   }
 
   render() {

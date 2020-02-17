@@ -27,8 +27,10 @@ connection.once('open', function() {
 })
 
 
-// const userRouter = require('./routes/user');
-const user = require('./routes/api/user')
+
+const userapi = require('./routes/api/user')
+const productapi = require('./routes/api/product')
+const user = require('./routes/user')
 
 
 // Passport middleware
@@ -39,8 +41,11 @@ require("./config/passport")(passport);
 
 // API endpoints
 
-app.use("/api/user", user);
-// app.use('/', userRouter);
+app.use("/api/user", userapi);
+app.use("/api/product", productapi)
+
+app.use("/user",passport.authenticate("jwt",{session: false}),user);
+
 
 app.listen(PORT, function() {
     console.log("Server is running on port: " + PORT);

@@ -5,8 +5,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import UsersList from "./components/users-list.component";
 import CreateUser from "./components/create-user.component";
 import LoginForm from "./components/login.component";
+import Logout from "./components/logout.component";
+import ProductAdditionForm from "./components/product-add.component"
 
 function App() {
+
   return (
     <Router>
       <div className="container">
@@ -26,10 +29,23 @@ function App() {
                   Register
                 </Link>
               </li>
-
               <li className="navbar-item">
                 <Link to="/login" className="nav-link">
                   Login
+                </Link>
+              </li>
+
+              <li className="navbar-item">
+                <Link to="/addproduct" className="nav-link">
+                  Add product
+                </Link>
+              </li>
+
+
+
+              <li className="navbar-item">
+                <Link to="/logout" className="nav-link">
+                  Logout
                 </Link>
               </li>
             </ul>
@@ -40,6 +56,8 @@ function App() {
         <Route path="/displayusers" exact component={UsersList} />
         <Route path="/create" component={CreateUser} />
         <Route path="/login" component={LoginForm} />
+        <Route path="/logout" component={Logout} />
+        <Route path="/addproduct" component={ProductAdditionForm} />
       </div>
     </Router>
   );

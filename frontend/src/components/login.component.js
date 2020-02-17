@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import jwt from "jwt-decode"
+
 
 export default class LoginForm extends Component {
   constructor(props) {
@@ -35,6 +37,10 @@ export default class LoginForm extends Component {
       .post("http://localhost:4000/api/user/login", User)
       .then((res) => {
         console.log(res);
+        let decodedToken = jwt(res.data.token);
+        localStorage.setItem("UserID",decodedToken.id)
+        localStorage.setItem("UserType", decodedToken.type)
+        localStorage.setItem("logged_in", "true")
       })
       .catch((err) => {
         console.log(err.response);
@@ -73,7 +79,7 @@ export default class LoginForm extends Component {
           <div className="form-group">
             <input
               type="submit"
-              value="Create User"
+              value="Login"
               className="btn btn-primary"
             />
           </div>
