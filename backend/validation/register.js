@@ -44,6 +44,11 @@ function validateRegistrationInput(data) {
     errors.passwordConfirm = "Confirmation password must match the password";
   }
 
+  if(!validator.equals(data.type, "vendor") && !validator.equals(data.type, "customer"))
+  {
+    errors.type = "Type must be one of vendor or customer"
+  }
+
   // return list of errors and whether input is validated
   return {
       errors,

@@ -1,21 +1,17 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-export default class CreateUser extends Component {
+export default class LoginForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       username: "",
-      password: "",
-      passwordConfirm: "",
-      type: "vendor"
+      password: ""
     };
 
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
-    this.onChangePasswordConfirm = this.onChangePasswordConfirm.bind(this);
-    this.onChangeType = this.onChangeType.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -27,26 +23,16 @@ export default class CreateUser extends Component {
     this.setState({ password: event.target.value });
   }
 
-  onChangePasswordConfirm(event) {
-    this.setState({ passwordConfirm: event.target.value });
-  }
-
-  onChangeType(event) {
-    this.setState({ type: event.target.value });
-  }
-
   onSubmit(e) {
     e.preventDefault();
 
-    const newUser = {
+    const User = {
       username: this.state.username,
-      password: this.state.password,
-      passwordConfirm: this.state.passwordConfirm,
-      type: this.state.type
+      password: this.state.password
     };
 
     axios
-      .post("http://localhost:4000/api/user/register", newUser)
+      .post("http://localhost:4000/api/user/login", User)
       .then((res) => {
         console.log(res);
       })
@@ -56,9 +42,7 @@ export default class CreateUser extends Component {
 
     this.setState({
       username: "",
-      password: "",
-      passwordConfirm: "",
-      type: "vendor"
+      password: ""
     });
   }
 
@@ -84,26 +68,8 @@ export default class CreateUser extends Component {
               onChange={this.onChangePassword}
             />
           </div>
-          <div className="form-group">
-            <label>Confirm Password: </label>
-            <input
-              type="text"
-              className="form-control"
-              value={this.state.passwordConfirm}
-              onChange={this.onChangePasswordConfirm}
-            />
-          </div>
-          <div className="form-group">
-            <label>Type of user: </label>
-            <select
-              className="form-control"
-              value={this.state.type}
-              onChange={this.onChangeType}
-            >
-              <option value="vendor">Vendor</option>
-              <option value="customer">Customer</option>
-            </select>
-          </div>
+          
+  
           <div className="form-group">
             <input
               type="submit"

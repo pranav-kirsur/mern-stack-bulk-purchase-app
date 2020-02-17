@@ -12,7 +12,6 @@ const User = require("../../models/user");
 
 // Route for register
 router.post("/register", (req, res) => {
-  console.log(req);
   //Validate input
   const { errors, isValid } = validateRegisterInput(req.body);
   if (!isValid) {
@@ -94,6 +93,18 @@ router.post("/login", (req, res) => {
     });
   });
 });
+
+// Getting all the users
+router.route('/getall').get(function(req, res) {
+  User.find(function(err, users) {
+      if (err) {
+          console.log(err);
+      } else {
+          res.json(users);
+      }
+  });
+});
+
 
 
 module.exports = router;

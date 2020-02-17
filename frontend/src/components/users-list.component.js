@@ -9,7 +9,7 @@ export default class UsersList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4000/')
+        axios.get('http://localhost:4000/api/user/getall')
              .then(response => {
                  this.setState({users: response.data});
              })
@@ -25,7 +25,7 @@ export default class UsersList extends Component {
                     <thead>
                         <tr>
                             <th>Username</th>
-                            <th>Email</th>
+                            <th>Type</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,7 +34,7 @@ export default class UsersList extends Component {
                             return (
                                 <tr>
                                     <td>{currentUser.username}</td>
-                                    <td>{currentUser.email}</td>
+                                    <td>{currentUser.type}</td>
                                 </tr>
                             )
                         })
