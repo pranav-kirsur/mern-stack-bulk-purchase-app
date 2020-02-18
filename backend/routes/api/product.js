@@ -55,9 +55,11 @@ router.get("/changestatusbyid/:id/:status", (req, res) => {
 
 // Route for getall
 router.get("/getall", (req, res) => {
-  Product.find({}, function(err, product) {
+  Product.find({}).populate("vendor_id").exec(function(err, product) {
     res.json(product);
   });
 });
+
+
 
 module.exports = router;

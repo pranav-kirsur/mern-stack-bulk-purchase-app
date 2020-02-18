@@ -8,6 +8,7 @@ import LoginForm from "./components/login.component";
 import Logout from "./components/logout.component";
 import ProductAdditionForm from "./components/product-add.component";
 import VendorOrderDisplay from "./components/vendor-order-display.component";
+import ListingDisplayCustomer from "./components/listing-display-customer";
 
 class App extends Component {
   constructor(props) {
@@ -23,11 +24,9 @@ class App extends Component {
     });
   }
 
-  componentDidMount()
-  {
-    if(localStorage.getItem("logged_in") === "true")
-    {
-      this.setState({view : localStorage.getItem("UserType")});
+  componentDidMount() {
+    if (localStorage.getItem("logged_in") === "true") {
+      this.setState({ view: localStorage.getItem("UserType") });
     }
   }
 
@@ -163,26 +162,8 @@ class App extends Component {
               <div className="collapse navbar-collapse">
                 <ul className="navbar-nav mr-auto">
                   <li className="navbar-item">
-                    <Link to="/addproduct" className="nav-link">
-                      Add product
-                    </Link>
-                  </li>
-
-                  <li className="navbar-item">
-                    <Link to="/waitingorders" className="nav-link">
-                      Waiting orders
-                    </Link>
-                  </li>
-
-                  <li className="navbar-item">
-                    <Link to="/placedorders" className="nav-link">
-                      Placed orders
-                    </Link>
-                  </li>
-
-                  <li className="navbar-item">
-                    <Link to="/cancelledorders" className="nav-link">
-                      Cancelled orders
+                    <Link to="/listingsdisplay" className="nav-link">
+                      View listings
                     </Link>
                   </li>
 
@@ -205,26 +186,11 @@ class App extends Component {
             />
 
             <Route
-              path="/waitingorders"
+              path="/listingsdisplay"
               render={props => (
-                <VendorOrderDisplay {...props} status={"waiting"} />
+                <ListingDisplayCustomer {...props} />
               )}
             />
-
-            <Route
-              path="/placedorders"
-              render={props => (
-                <VendorOrderDisplay {...props} status={"placed"} />
-              )}
-            />
-
-            <Route
-              path="/cancelledorders"
-              render={props => (
-                <VendorOrderDisplay {...props} status={"cancelled"} />
-              )}
-            />
-            <Route path="/addproduct" component={ProductAdditionForm} />
           </div>
         </Router>
       );
