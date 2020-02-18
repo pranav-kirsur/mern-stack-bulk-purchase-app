@@ -36,7 +36,7 @@ export default class ProductAddComponent extends Component {
       name: this.state.name,
       price: this.state.price,
       quantity: this.state.quantity,
-      vendor_id: localStorage.getItem("userID")
+      vendor_id: localStorage.getItem("UserID")
     };
 
     axios

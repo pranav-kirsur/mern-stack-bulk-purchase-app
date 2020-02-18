@@ -41,6 +41,15 @@ export default class LoginForm extends Component {
         localStorage.setItem("UserID",decodedToken.id)
         localStorage.setItem("UserType", decodedToken.type)
         localStorage.setItem("logged_in", "true")
+
+        if(decodedToken.type === "vendor")
+        {
+          this.props.changeview("vendor")
+        }
+        if(decodedToken.type === "customer" )
+        {
+          this.props.changeview("customer")
+        }
       })
       .catch((err) => {
         console.log(err.response);
