@@ -131,6 +131,17 @@ router.get("/getbycustomerid/:customerid", (req, res) => {
     });
 });
 
+// Route for getbyproductid
+router.get("/getbyproductid/:productid", (req, res) => {
+  let productid = req.params.productid;
+  Order.find({ product_id: productid })
+    .populate("product_id")
+    .populate("customer_id" )
+    .exec(function(err, order) {
+      res.json(order);
+    });
+});
+
 // Route for getall
 router.get("/getall", (req, res) => {
   Order.find({}).exec(function(err, order) {

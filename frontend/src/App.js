@@ -9,8 +9,8 @@ import Logout from "./components/logout.component";
 import ProductAdditionForm from "./components/product-add.component";
 import VendorOrderDisplay from "./components/vendor-order-display.component";
 import ListingDisplayCustomer from "./components/listing-display-customer";
-import OrdersDisplayCustomer from "./components/customer-orders-display.component"
-import DispatchedOrdersDisplay from "./components/dispatched-orders-display.component"
+import OrdersDisplayCustomer from "./components/customer-orders-display.component";
+import DispatchedOrdersDisplay from "./components/dispatched-orders-display.component";
 
 class App extends Component {
   constructor(props) {
@@ -104,6 +104,12 @@ class App extends Component {
                   </li>
 
                   <li className="navbar-item">
+                    <Link to="/dispatchedorders" className="nav-link">
+                      Dispatched orders
+                    </Link>
+                  </li>
+
+                  <li className="navbar-item">
                     <Link to="/cancelledorders" className="nav-link">
                       Cancelled orders
                     </Link>
@@ -145,6 +151,13 @@ class App extends Component {
               path="/cancelledorders"
               render={props => (
                 <VendorOrderDisplay {...props} status={"cancelled"} />
+              )}
+            />
+
+            <Route
+              path="/dispatchedorders"
+              render={props => (
+                <DispatchedOrdersDisplay {...props}  />
               )}
             />
             <Route path="/addproduct" component={ProductAdditionForm} />
