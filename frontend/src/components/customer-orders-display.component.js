@@ -30,6 +30,8 @@ export default class CustomerOrderDisplay extends Component {
                             <th>Quantity</th>
                             <th>Price</th>
                             <th>Status</th>
+                            <th>Quantity left</th>
+                            <th>Edit order</th>
                         </tr>
                     </thead>
                     <tbody>

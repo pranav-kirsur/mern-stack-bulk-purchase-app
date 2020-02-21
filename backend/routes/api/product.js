@@ -59,4 +59,11 @@ router.get("/getall", (req, res) => {
     });
 });
 
+//Route for delete by id
+router.get("/deletebyid/:id", (req, res) => {
+  let id = req.params.id;
+  Product.findByIdAndRemove(id, function(err, prod){console.log(err);});
+  res.send("Done");
+});
+
 module.exports = router;
