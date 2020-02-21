@@ -109,6 +109,17 @@ router.post("/editOrder", (req, res) => {
   });
 });
 
+// Route for add review
+router.post("/addReview", (req, res) => {
+  let id = req.body.order_id;
+  let review = req.body.review;
+  let rating = Number(req.body.rating)
+
+  Order.findByIdAndUpdate(id,{review: review, rating:rating},function(err, prod){console.log(err);});
+  res.send("Done")
+  
+});
+
 // Route for getbycustomerid
 router.get("/getbycustomerid/:customerid", (req, res) => {
   let customerid = req.params.customerid;

@@ -10,6 +10,7 @@ import ProductAdditionForm from "./components/product-add.component";
 import VendorOrderDisplay from "./components/vendor-order-display.component";
 import ListingDisplayCustomer from "./components/listing-display-customer";
 import OrdersDisplayCustomer from "./components/customer-orders-display.component"
+import DispatchedOrdersDisplay from "./components/dispatched-orders-display.component"
 
 class App extends Component {
   constructor(props) {
