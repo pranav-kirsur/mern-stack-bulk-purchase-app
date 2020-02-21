@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import {Redirect} from "react-router-dom";
 import axios from "axios";
 import ReactDOM from "react-dom";
+
+import ProductListingCustomer from "./product-listing-customer.component";
 
 export default class ListingDisplayCustomer extends Component {
   constructor(props) {
@@ -10,6 +13,8 @@ export default class ListingDisplayCustomer extends Component {
     this.onChangeProductname = this.onChangeProductname.bind(this);
     this.onChangeSortType = this.onChangeSortType.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.state.orderpage = false;
+    this.displayOrderPage = this.displayOrderPage.bind(this)
   }
 
   onChangeProductname(event) {
@@ -18,6 +23,12 @@ export default class ListingDisplayCustomer extends Component {
 
   onChangeSortType(event) {
     this.setState({ sorttype: event.target.value });
+  }
+
+  displayOrderPage()
+  {
+    this.setState({orderpage : true});
+
   }
 
   onSubmit(e) {
@@ -36,6 +47,14 @@ export default class ListingDisplayCustomer extends Component {
             return a.price - b.price;
           });
         }
+        if (this.state.sorttype === "quantity") {
+          products_to_display = products_to_display.sort(function(a, b) {
+            let a_quant = a.quantity - a.quantityOrdered;
+            let b_quant = b.quantity - b.quantityOrdered;
+            return a_quant - b_quant;
+          });
+        }
+
         console.log(products_to_display);
         let listings = (
           <table className="table table-striped">
@@ -49,16 +68,7 @@ export default class ListingDisplayCustomer extends Component {
             </thead>
             <tbody>
               {products_to_display.map((currentProduct, i) => {
-                return (
-                  <tr>
-                    <td>{currentProduct.name}</td>
-                    <td>{currentProduct.vendor_id.username}</td>
-                    <td>{currentProduct.price}</td>
-                    <td>
-                      {currentProduct.quantity - currentProduct.quantityOrdered}
-                    </td>
-                  </tr>
-                );
+                return <ProductListingCustomer orderdata={currentProduct} displayOrderPage={this.displayOrderPage} />;
               })}
             </tbody>
           </table>
@@ -71,6 +81,11 @@ export default class ListingDisplayCustomer extends Component {
   }
 
   render() {
+    if(this.state.orderpage)
+    {
+      return <Redirect to = "/" />;
+    }
+
     return (
       <div>
         <div>

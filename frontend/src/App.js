@@ -9,6 +9,7 @@ import Logout from "./components/logout.component";
 import ProductAdditionForm from "./components/product-add.component";
 import VendorOrderDisplay from "./components/vendor-order-display.component";
 import ListingDisplayCustomer from "./components/listing-display-customer";
+import OrdersDisplayCustomer from "./components/customer-orders-display.component"
 
 class App extends Component {
   constructor(props) {
@@ -168,6 +169,12 @@ class App extends Component {
                   </li>
 
                   <li className="navbar-item">
+                    <Link to="/ordersdisplay" className="nav-link">
+                      Display Orders
+                    </Link>
+                  </li>
+
+                  <li className="navbar-item">
                     <Link to="/logout" className="nav-link">
                       Logout
                     </Link>
@@ -187,9 +194,12 @@ class App extends Component {
 
             <Route
               path="/listingsdisplay"
-              render={props => (
-                <ListingDisplayCustomer {...props} />
-              )}
+              render={props => <ListingDisplayCustomer {...props} />}
+            />
+
+            <Route
+              path="/ordersdisplay"
+              render={props => <OrdersDisplayCustomer {...props} />}
             />
           </div>
         </Router>

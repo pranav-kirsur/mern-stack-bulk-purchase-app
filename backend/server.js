@@ -30,6 +30,7 @@ connection.once('open', function() {
 
 const userapi = require('./routes/api/user')
 const productapi = require('./routes/api/product')
+const orderapi = require("./routes/api/order")
 const user = require('./routes/user')
 
 
@@ -43,6 +44,8 @@ require("./config/passport")(passport);
 
 app.use("/api/user", userapi);
 app.use("/api/product", productapi)
+app.use("/api/order", orderapi)
+
 
 app.use("/user",passport.authenticate("jwt",{session: false}),user);
 

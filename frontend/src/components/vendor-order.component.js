@@ -6,7 +6,9 @@ export default class VendorOrder extends Component {
     super(props);
     this.state = { active: true };
 
-    this.cancelOrderHandler = this.cancelOrderHandler.bind(this)
+    this.cancelOrderHandler = this.cancelOrderHandler.bind(this);
+    this.dispatchOrderHandler = this.dispatchOrderHandler.bind(this)
+
   }
 
   cancelOrderHandler() {
@@ -23,6 +25,21 @@ export default class VendorOrder extends Component {
     this.setState({active: false});
   }
 
+  dispatchOrderHandler() {
+    let id = this.props.orderdata._id;
+    //eslint-disable-next-line
+    axios.get('http://localhost:4000/api/product/changestatusbyid/' + id + '/' + "dispatched")
+    .then(response => {
+       console.log(response.data)
+    })
+    .catch(function(error) {
+        console.log(error);
+    })
+
+    this.setState({active: false});
+  }
+
+
   render() {
     if (this.state.active) {
       let cancel_button = "";
@@ -34,6 +51,20 @@ export default class VendorOrder extends Component {
               onClick={this.cancelOrderHandler}
             >
               Cancel order
+            </button>
+          </td>
+        );
+      }
+
+
+      if (this.props.orderdata.status === "placed") {
+        cancel_button = (
+          <td>
+            <button
+              className="btn btn-primary"
+              onClick={this.dispatchOrderHandler}
+            >
+              Dispatch Order
             </button>
           </td>
         );

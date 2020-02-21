@@ -42,24 +42,21 @@ router.get("/changestatusbyid/:id/:status", (req, res) => {
   let status = req.params.status;
   let id = req.params.id;
   Product.findByIdAndUpdate(id, { status: status }, function(err, product) {
-    if(err)
-    {
+    if (err) {
       res.status(400).send("Error!");
-    }
-    else
-    {
-      res.json(product)
+    } else {
+      res.json(product);
     }
   });
 });
 
 // Route for getall
 router.get("/getall", (req, res) => {
-  Product.find({}).populate("vendor_id").exec(function(err, product) {
-    res.json(product);
-  });
+  Product.find({})
+    .populate("vendor_id")
+    .exec(function(err, product) {
+      res.json(product);
+    });
 });
-
-
 
 module.exports = router;
